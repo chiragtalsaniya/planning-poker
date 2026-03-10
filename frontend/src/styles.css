@@ -1,0 +1,297 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8fafc;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* 3D Flip Animation */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Universal Poker Card System */
+@layer components {
+  /* Base Card Structure */
+  .poker-card {
+    @apply relative w-20 h-28 rounded-xl shadow-xl transition-all duration-300;
+  }
+
+  .poker-card-lg {
+    @apply relative w-24 h-32 rounded-xl shadow-xl border-4 transition-all duration-300;
+  }
+
+  .poker-card-border {
+    @apply absolute inset-1 border-2 rounded-lg;
+  }
+
+  .poker-card-badge {
+    @apply absolute -top-3 left-1/2 -translate-x-1/2 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md max-w-full truncate;
+  }
+
+  .poker-card-corner {
+    @apply absolute flex flex-col items-center leading-tight;
+  }
+
+  .poker-card-corner-tl {
+    @apply poker-card-corner top-2 left-2;
+  }
+
+  .poker-card-corner-br {
+    @apply poker-card-corner bottom-2 right-2 rotate-180;
+  }
+
+  .poker-card-center {
+    @apply absolute inset-0 flex items-center justify-center;
+  }
+
+  .poker-card-value {
+    @apply font-black drop-shadow-lg;
+  }
+
+  .poker-card-symbol {
+    @apply text-xs;
+  }
+
+  /* Voted State (Green) */
+  .poker-card-voted {
+    @apply poker-card bg-green-100 border-green-400;
+  }
+
+  .poker-card-voted .poker-card-border {
+    @apply border-green-300;
+  }
+
+  .poker-card-voted .poker-card-badge {
+    @apply bg-green-600;
+  }
+
+  /* Waiting State (Gray) */
+  .poker-card-waiting {
+    @apply poker-card bg-gray-100 border-gray-300;
+  }
+
+  .poker-card-waiting .poker-card-border {
+    @apply border-gray-200;
+  }
+
+  .poker-card-waiting .poker-card-badge {
+    @apply bg-gray-500;
+  }
+
+  /* Revealed/Open State (White) */
+  .poker-card-open {
+    @apply poker-card bg-white border-gray-800;
+  }
+
+  .poker-card-open .poker-card-border {
+    @apply border-gray-300;
+  }
+
+  .poker-card-open .poker-card-badge {
+    @apply bg-gray-800;
+  }
+
+  .poker-card-open .poker-card-value {
+    @apply text-gray-800;
+  }
+
+ 
+
+  /* Selectable/Interactive State */
+  .poker-card-selectable {
+    @apply poker-card bg-white border-gray-400 hover:border-blue-500 hover:scale-105 cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50;
+  }
+
+  .poker-card-selectable .poker-card-border {
+    @apply border-gray-300;
+  }
+
+  .poker-card-selectable .poker-card-value {
+    @apply text-gray-800;
+  }
+
+  .poker-card-selectable .poker-card-symbol {
+    @apply text-black;
+  }
+
+  /* Selected State (Primary Red) */
+  .poker-card-selected {
+    @apply poker-card;
+  }
+
+  .poker-card-selected .poker-card-value {
+    @apply text-white font-black;
+  }
+
+  .poker-card-selected .poker-card-symbol {
+    @apply text-white;
+  }
+
+  .poker-card-selected .poker-card-corner span {
+    @apply text-white font-bold;
+  }
+
+  /* Statistics Cards */
+  .poker-card-stat-average {
+    @apply poker-card-lg bg-blue-600 border-blue-800;
+  }
+
+  .poker-card-stat-average .poker-card-border {
+    @apply border-blue-400;
+  }
+
+  .poker-card-stat-average .poker-card-badge {
+    @apply bg-blue-800;
+  }
+
+  .poker-card-stat-average .poker-card-value {
+    @apply text-white text-3xl;
+  }
+
+  .poker-card-stat-highest {
+    @apply poker-card-lg bg-green-600 border-green-800;
+  }
+
+  .poker-card-stat-highest .poker-card-border {
+    @apply border-green-400;
+  }
+
+  .poker-card-stat-highest .poker-card-badge {
+    @apply bg-green-800;
+  }
+
+  .poker-card-stat-highest .poker-card-value {
+    @apply text-white text-3xl;
+  }
+
+  .poker-card-stat-lowest {
+    @apply poker-card-lg bg-orange-600 border-orange-800;
+  }
+
+  .poker-card-stat-lowest .poker-card-border {
+    @apply border-orange-400;
+  }
+
+  .poker-card-stat-lowest .poker-card-badge {
+    @apply bg-orange-800;
+  }
+
+  .poker-card-stat-lowest .poker-card-value {
+    @apply text-white text-3xl;
+  }
+
+  .poker-card-stat-total {
+    @apply poker-card-lg bg-purple-600 border-purple-800;
+  }
+
+  .poker-card-stat-total .poker-card-border {
+    @apply border-purple-400;
+  }
+
+  .poker-card-stat-total .poker-card-badge {
+    @apply bg-purple-800;
+  }
+
+  .poker-card-stat-total .poker-card-value {
+    @apply text-white text-3xl;
+  }
+
+  /* Selection Indicator */
+  .poker-card-selection-indicator {
+    @apply absolute -top-2 -right-2 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center border-2 border-white shadow-lg;
+  }
+
+  /* Hover Effects */
+  .poker-card-hover-effect {
+    @apply absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl;
+  }
+
+  /* Text Size Variants */
+  .poker-card-text-sm {
+    @apply text-sm font-extrabold;
+  }
+
+  .poker-card-text-lg {
+    @apply text-3xl;
+  }
+
+  .poker-card-text-xl {
+    @apply text-4xl;
+  }
+
+  /* Disabled State */
+  .poker-card-disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  /* Accessibility Helpers */
+  .poker-card-focus {
+    @apply focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50;
+  }
+
+  /* Closed Card State */
+  .poker-card-closed {
+    @apply poker-card bg-disabled border-gray-400;
+  }
+
+  .poker-card-closed .poker-card-border {
+    @apply border-gray-300;
+  }
+
+  .poker-card-closed .poker-card-badge {
+    @apply bg-primary;
+  }
+
+  .poker-card-closed-pattern {
+    @apply absolute inset-0 overflow-hidden;
+  }
+
+  .poker-card-closed-pattern::after {
+    content: '';
+    @apply absolute inset-0 opacity-20;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 20px);
+  }
+
+  /* Open Card Corner Styles */
+  .poker-card-open-corner {
+    @apply flex flex-col items-center leading-tight text-gray-800;
+  }
+
+  .poker-card-open-value {
+    @apply font-black drop-shadow-md text-gray-800;
+  }
+}

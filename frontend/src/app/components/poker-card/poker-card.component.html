@@ -1,0 +1,75 @@
+<div 
+  class="poker-card"
+  [class]="getCardClasses()"
+  [style.width]="config.size === 'small' ? '4rem' : '5rem'"
+  [style.height]="config.size === 'small' ? '5.5rem' : '7rem'"
+  [attr.aria-label]="config.ariaLabel"
+  [attr.tabindex]="config.clickable ? '0' : undefined"
+  (click)="onClick()"
+  (keydown.enter)="onClick()"
+  (keydown.space)="onClick()"
+>
+  <div class="poker-card-border"></div>
+  
+  <!-- Badge -->
+  <div *ngIf="config.badge" class="poker-card-badge">{{ config.badge }}</div>
+  
+  <!-- Voted state - closed card with pattern -->
+  <div *ngIf="config.type === 'voted'" class="poker-card-closed-pattern"></div>
+  
+  <!-- Waiting state indicator -->
+  <div *ngIf="config.type === 'waiting'" class="poker-card-center">
+    <div class="flex flex-col items-center justify-center">
+      <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center animate-pulse">
+        <span class="text-white text-sm" aria-hidden="true">⏳</span>
+      </div>
+      <p class="text-xs font-semibold text-gray-600 mt-1">Waiting</p>
+    </div>
+  </div>
+  
+  <!-- Selected state -->
+  <div *ngIf="config.type === 'selected'" class="absolute inset-0 bg-primary rounded-xl shadow-xl border border-red-300">
+    <div class="absolute inset-1 border border-red-200 rounded-lg"></div>
+    <div *ngIf="config.badge" class="poker-card-badge bg-disabled">{{ config.badge }}</div>
+    <div class="absolute top-2 left-3 flex flex-col items-center leading-tight">
+      <span class="text-xs font-bold text-white">{{ getCornerValue() }}</span>
+      <span *ngIf="showSuit()" class="text-xs text-white">{{ config.suit || '♥' }}</span>
+    </div>
+    <div class="poker-card-center">
+      <span class="text-3xl font-black text-white">{{ getCenterValue() }}</span>
+    </div>
+    <div class="absolute bottom-2 right-3 flex flex-col items-center leading-tight rotate-180">
+      <span class="text-xs font-bold text-white">{{ getCornerValue() }}</span>
+      <span *ngIf="showSuit()" class="text-xs text-white">{{ config.suit || '♥' }}</span>
+    </div>
+  </div>
+
+  <!-- Open/Selectable state -->
+  <div *ngIf="config.type === 'open' || config.type === 'selectable'">
+    <!-- Top Left Corner -->
+    <div class="absolute top-2 left-2.5 poker-card-corner">
+      <span class="text-sm font-extrabold">{{ getCornerValue() }}</span>
+      <span *ngIf="showSuit()" class="text-xs poker-card-symbol">{{ config.suit || '♥' }}</span>
+    </div>
+    
+    <!-- Center Value -->
+    <div class="poker-card-center">
+      <span 
+        class="poker-card-value"
+        [class.text-5xl]="getCenterValue().length === 1 && getCenterValue() !== '☕'"
+        [class.text-4xl]="getCenterValue().length === 2 || getCenterValue() === '☕'"
+      >
+        {{ getCenterValue() }}
+      </span>
+    </div>
+    
+    <!-- Bottom Right Corner -->
+    <div class="absolute bottom-2 right-2.5 poker-card-corner rotate-180">
+      <span class="text-sm font-extrabold">{{ getCornerValue() }}</span>
+      <span *ngIf="showSuit()" class="text-xs poker-card-symbol">{{ config.suit || '♥' }}</span>
+    </div>
+  </div>
+  
+  <!-- Hover Glow -->
+  <div *ngIf="config.clickable" class="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+</div>

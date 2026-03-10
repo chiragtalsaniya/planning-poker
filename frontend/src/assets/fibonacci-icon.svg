@@ -1,0 +1,8 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 14V2h12v12H2z" stroke="#6B7280" stroke-width="1.5" fill="none"/>
+  <path d="M4 10h2v2H4v-2zM6 8h2v2H6V8zM8 6h2v2H8V6zM10 4h2v2h-2V4z" fill="#6B7280"/>
+  <text x="5" y="11.5" font-family="Arial" font-size="3" fill="#6B7280">1</text>
+  <text x="7" y="9.5" font-family="Arial" font-size="3" fill="#6B7280">1</text>
+  <text x="9" y="7.5" font-family="Arial" font-size="3" fill="#6B7280">2</text>
+  <text x="11" y="5.5" font-family="Arial" font-size="3" fill="#6B7280">3</text>
+</svg>
