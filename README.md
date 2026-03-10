@@ -4,7 +4,7 @@ A modern, mobile-responsive Planning Poker application for Agile ceremonies buil
 
 ## 🚀 Live Demo
 
-- **Frontend**: [GitHub Pages URL will be here]
+- **Frontend**: https://chiragtalsaniya.github.io/planning-poker/
 - **Backend**: [Render/Railway URL will be here]
 
 ## ✨ Features
