@@ -156,10 +156,27 @@ export class RoomComponent implements OnInit, OnDestroy {
       'Are you sure you want to leave this session?',
       () => {
         this.socketService.disconnect();
+        this.resetComponentState();
         localStorage.clear();
+        sessionStorage.clear();
         this.router.navigate(['/']);
       }
     );
+  }
+
+  private resetComponentState(): void {
+    this.roomState = null;
+    this.revealedVotes = [];
+    this.voteStats = null;
+    this.myVote = null;
+    this.userName = '';
+    this.roomId = '';
+    this.sessionUrl = '';
+    this.qrCodeUrl = '';
+    this.linkCopied = false;
+    this.storyTitle = '';
+    this.flippedCards.clear();
+    this.flippedStats.clear();
   }
 
   showConfirm(title: string, message: string, callback: () => void): void {
