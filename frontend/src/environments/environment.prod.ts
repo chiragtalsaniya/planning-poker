@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend-url.onrender.com' // Replace with your actual backend URL
+  apiUrl: 'https://planning-poker-akdi.onrender.com'
 };
