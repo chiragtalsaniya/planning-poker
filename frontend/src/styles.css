@@ -134,6 +134,8 @@ body {
   /* Selectable/Interactive State */
   .poker-card-selectable {
     @apply poker-card bg-white border-gray-400 hover:border-blue-500 hover:scale-105 cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .poker-card-selectable .poker-card-border {

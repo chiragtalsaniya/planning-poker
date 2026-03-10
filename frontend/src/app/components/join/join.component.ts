@@ -34,11 +34,19 @@ export class JoinComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check URL parameters
     this.route.queryParams.subscribe(params => {
       if (params['room']) {
         this.roomId = params['room'];
       }
     });
+    
+    // Also check URL hash for mobile compatibility
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomFromUrl = urlParams.get('room');
+    if (roomFromUrl) {
+      this.roomId = roomFromUrl;
+    }
   }
 
   createSession(): void {
