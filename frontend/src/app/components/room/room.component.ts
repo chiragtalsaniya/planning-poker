@@ -49,7 +49,7 @@ export class RoomComponent implements OnInit, OnDestroy {
 
     this.isCreator = isCreator === 'true';
 
-    this.sessionUrl = `${window.location.origin}?room=${this.roomId}`;
+    this.sessionUrl = `${window.location.origin}/planning-poker?room=${this.roomId}`;
     this.qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(this.sessionUrl)}`;
 
     this.socketService.onRoomUpdate().subscribe((state) => {
