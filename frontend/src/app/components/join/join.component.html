@@ -102,8 +102,10 @@
         <button
           *ngIf="roomId"
           (click)="joinSession()"
+          (touchstart)="joinSession()"
           [disabled]="!userName.trim()"
-          class="w-full py-3 px-4 bg-primary text-white font-semibold rounded-lg hover:bg-red-700 transition shadow-lg disabled:bg-disabled disabled:cursor-not-allowed"
+          class="w-full py-3 px-4 bg-primary text-white font-semibold rounded-lg hover:bg-red-700 transition shadow-lg disabled:bg-disabled disabled:cursor-not-allowed touch-manipulation"
+          style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;"
         >
           Join Session
         </button>
@@ -112,8 +114,10 @@
         <button
           *ngIf="!roomId"
           (click)="createSession()"
+          (touchstart)="createSession()"
           [disabled]="!userName.trim()"
-          class="w-full py-3 px-4 bg-primary text-white font-semibold rounded-lg hover:bg-red-700 transition shadow-lg disabled:bg-disabled disabled:cursor-not-allowed"
+          class="w-full py-3 px-4 bg-primary text-white font-semibold rounded-lg hover:bg-red-700 transition shadow-lg disabled:bg-disabled disabled:cursor-not-allowed touch-manipulation"
+          style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;"
         >
           Create New Session
         </button>
